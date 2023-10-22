@@ -2,39 +2,10 @@ import CreateCustomer from "./CreateCustomer";
 import Customer from "./Customer";
 import AccountOperations from "./AccountOperations";
 import BalanceDisplay from "./BalanceDisplay";
-import { useReducer } from "react";
-
-const accountInitialItems = {
-  balance: 0,
-  loan: 0,
-  loanPurpose: "",
-};
-
-const customerInitialItems = {
-  fullName: "",
-  nationalId: "",
-  createdAt: "",
-};
-
-function customerReducer(state, action) {
-  switch (action.type) {
-    case "customer/createCustomer":
-      return {
-        ...state,
-        fullName: action.payload.fullname,
-        nationalId: action.payload.nationalId,
-      };
-
-    default:
-      return state;
-  }
-}
+import { useCustomer } from "./contexts/customerContext";
 
 function App() {
-  const [{ fullName, nationalId }, dispatch] = useReducer(
-    customerReducer,
-    customerInitialItems
-  );
+  const { fullName, nationalId } = useCustomer();
 
   console.log(fullName, nationalId);
 
@@ -42,10 +13,10 @@ function App() {
     <div>
       <h1>🏦 The React-Redux Bank ⚛️</h1>
       {fullName === "" ? (
-        <CreateCustomer dispatch={dispatch} />
+        <CreateCustomer />
       ) : (
         <>
-          <Customer fullname={fullName} />
+          <Customer />
           <AccountOperations />
           <BalanceDisplay />
         </>
