@@ -3,6 +3,7 @@ import Customer from "./Customer";
 import AccountOperations from "./AccountOperations";
 import BalanceDisplay from "./BalanceDisplay";
 import { useCustomer } from "./contexts/customerContext";
+import "./store/store";
 
 function App() {
   const { fullName, nationalId } = useCustomer();
