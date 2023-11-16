@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCustomer } from "./contexts/customerContext";
+import { useCustomer } from "../../contexts/customerContext";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
@@ -12,7 +12,7 @@ function Customer() {
 
     dispatch({
       type: "customer/createCustomer",
-      payload: { fullName, nationalId },
+      payload: { fullName, nationalId, createdAt: new Date().toISOString() },
     });
   }
 

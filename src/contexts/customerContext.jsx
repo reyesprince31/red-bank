@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
-const CustomerContext = createContext();
+export const CustomerContext = createContext();
 
 const customerInitialItems = {
   fullName: "",
@@ -8,13 +8,14 @@ const customerInitialItems = {
   createdAt: "",
 };
 
-function customerReducer(state, action) {
+function customerReducer(state = customerInitialItems, action) {
   switch (action.type) {
     case "customer/createCustomer":
       return {
         ...state,
         fullName: action.payload.fullName,
         nationalId: action.payload.nationalId,
+        createdAt: action.payload.createdAt,
       };
 
     default:
@@ -35,10 +36,4 @@ function CustomerProvider({ children }) {
   );
 }
 
-function useCustomer() {
-  const context = useContext(CustomerContext);
-  return context;
-}
-
-// eslint-disable-next-line react-refresh/only-export-components
-export { CustomerProvider, useCustomer };
+export { CustomerProvider };

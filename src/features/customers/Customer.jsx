@@ -1,4 +1,4 @@
-import { useCustomer } from "./contexts/customerContext";
+import { useCustomer } from "../../contexts/customerContext";
 
 function Customer() {
   const { fullName } = useCustomer();
