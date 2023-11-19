@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { useCustomer } from "../../contexts/customerContext";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
-
-  const { dispatch } = useCustomer();
 
   function handleClick() {
     if (!fullName || !nationalId) return;

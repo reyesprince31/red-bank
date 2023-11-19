@@ -2,10 +2,11 @@ import CreateCustomer from "./features/customers/CreateCustomer";
 import Customer from "./features/customers/Customer";
 import AccountOperations from "./features/accounts/AccountOperations";
 import BalanceDisplay from "./features/accounts/BalanceDisplay";
-import { useCustomer } from "./contexts/customerContext";
+// import { useCustomer } from "./features/customers/useCustomer";
+import { useSelector } from "react-redux";
 
 function App() {
-  const { fullName, nationalId } = useCustomer();
+  const { fullName } = useSelector((data) => data.customer);
 
   return (
     <div>
