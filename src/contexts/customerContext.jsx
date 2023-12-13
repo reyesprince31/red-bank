@@ -1,39 +1,21 @@
 import { createContext, useReducer } from "react";
+import customerReducer, {
+  customerInitialItems,
+} from "../features/customers/customerSlices";
 
 export const CustomerContext = createContext();
 
-const customerInitialItems = {
-  fullName: "",
-  nationalId: "",
-  createdAt: "",
-};
-
-function customerReducer(state = customerInitialItems, action) {
-  switch (action.type) {
-    case "customer/createCustomer":
-      return {
-        ...state,
-        fullName: action.payload.fullName,
-        nationalId: action.payload.nationalId,
-        createdAt: action.payload.createdAt,
-      };
-
-    default:
-      return state;
-  }
-}
-
-function CustomerProvider({ children }) {
-  const [{ fullName, nationalId }, dispatch] = useReducer(
+export default function CustomerProvider({ children }) {
+  const [{ fullName, nationalId }] = useReducer(
     customerReducer,
     customerInitialItems
   );
 
+  const value = { fullName, nationalId };
+
   return (
-    <CustomerContext.Provider value={{ fullName, nationalId, dispatch }}>
+    <CustomerContext.Provider value={value}>
       {children}
     </CustomerContext.Provider>
   );
 }
-
-export { CustomerProvider };

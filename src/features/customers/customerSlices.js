@@ -1,4 +1,4 @@
-const customerInitialItems = {
+export const customerInitialItems = {
   fullName: "",
   nationalId: "",
   createdAt: "",
